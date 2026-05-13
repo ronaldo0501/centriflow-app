@@ -1,5 +1,6 @@
 const express = require('express');
 const { query } = require('../db');
+const notifications = require('../services/notifications');
 
 const router = express.Router();
 
@@ -91,6 +92,32 @@ router.post('/', async (req, res) => {
         [device.org_id, device_id, report.id, test_date, deadline.toISOString().split('T')[0]]
       );
     }
+
+    // Send notifications asynchronously — never block the response
+    setImmediate(async () => {
+      try {
+        const propResult = await query(
+          `SELECT p.owner_name, p.owner_email, p.owner_phone, p.address_line1, p.city, p.state
+           FROM properties p JOIN devices d ON d.property_id = p.id WHERE d.id = $1`,
+          [device_id]
+        );
+        const orgResult = await query('SELECT id, name FROM organizations WHERE id = $1', [device.org_id]);
+        const owner = propResult.rows[0];
+        const org = orgResult.rows[0];
+        const deviceWithAddr = { ...device, ...propResult.rows[0] };
+        if (owner && org) {
+          if (result === 'fail') {
+            const deadline = new Date(test_date);
+            deadline.setDate(deadline.getDate() + 30);
+            await notifications.sendTestFailedNotice({ device: deviceWithAddr, owner, org, testReport: report, tester, complianceDeadline: deadline.toISOString().split('T')[0] });
+          } else {
+            await notifications.sendTestSubmittedConfirmation({ device: deviceWithAddr, owner, org, testReport: report, tester });
+          }
+        }
+      } catch (notifyErr) {
+        console.error('Notification error (non-fatal):', notifyErr.message);
+      }
+    });
 
     res.status(201).json({ success: true, data: report });
   } catch (err) {

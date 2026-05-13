@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const { query } = require('../db');
+const notifications = require('../services/notifications');
 
 const router = express.Router();
 
@@ -86,6 +87,14 @@ router.put('/:id/approve', async (req, res) => {
       [req.params.id, req.org.id]
     );
     if (!rows[0]) return res.status(404).json({ success: false, error: 'Tester not found', code: 'NOT_FOUND' });
+    // Send approval email asynchronously
+    setImmediate(async () => {
+      try {
+        await notifications.sendTesterApproved({ tester: rows[0], org: req.org });
+      } catch (err) {
+        console.error('Tester approval notification error (non-fatal):', err.message);
+      }
+    });
     res.json({ success: true, data: rows[0] });
   } catch (err) {
     console.error(err);

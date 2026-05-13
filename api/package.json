@@ -29,6 +29,7 @@
     "joi": "^18.2.1",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
+    "node-cron": "^4.2.1",
     "pg": "^8.20.0",
     "puppeteer-core": "^24.43.1",
     "stripe": "^22.1.1",

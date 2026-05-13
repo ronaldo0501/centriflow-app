@@ -61,7 +61,7 @@ router.get('/:year', async (req, res) => {
     const resolved_violations = violationsRes.rows.filter(v => v.status === 'resolved').length;
 
     // Assembly type breakdown
-    const typeCounts: Record<string, number> = {};
+    const typeCounts = {};
     devices.forEach(d => { typeCounts[d.assembly_type] = (typeCounts[d.assembly_type] || 0) + 1; });
     const top_assembly_types = Object.entries(typeCounts)
       .sort((a, b) => b[1] - a[1])
@@ -69,7 +69,7 @@ router.get('/:year', async (req, res) => {
 
     // Monthly breakdown
     const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const monthly: Record<number, { count: number; pass: number; fail: number }> = {};
+    const monthly = {};
     tests.forEach(t => {
       const m = parseInt(t.month, 10);
       if (!monthly[m]) monthly[m] = { count: 0, pass: 0, fail: 0 };

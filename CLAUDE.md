@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ---
 
 # CentriFlow — Claude Code Master Specification
-**Version:** 1.0.3
+**Version:** 1.0.7
 **Last Updated:** 2026-05-13
 **Owner:** Brandon Wright, Centricity GIS
 **Product:** CentriFlow — Backflow Prevention & Cross-Connection Control SaaS
@@ -1228,15 +1228,15 @@ Track completed items here. Update after every session.
 - [ ] CW sync tested end-to-end against a real CW instance
 
 ### Phase 7 — Notification Engine
-- [ ] Notification service (`/services/notifications.js`)
-- [ ] Email templates created (all 10 types)
-- [ ] Reminder scheduler (`/workers/reminder-scheduler.js`)
-- [ ] Violations worker (`/workers/violations-worker.js`)
+- [x] Notification service (`/services/notifications.js`) (2026-05-13)
+- [x] Email templates created (6 core types: test-due, test-overdue, test-submitted, test-failed, violation-notice, tester-approved) (2026-05-13)
+- [x] Reminder scheduler (`/workers/reminder-scheduler.js`) (2026-05-13)
+- [x] Violations worker (`/workers/violations-worker.js`) (2026-05-13)
 - [ ] Postal mail generator (`/services/postal-mail.js`)
   - [ ] PDF letter generation (Puppeteer)
   - [ ] Bulk PDF export
   - [ ] Lob.com API integration
-- [ ] All workers registered and running locally
+- [x] All workers registered and running via cron in server.js (2026-05-13)
 
 ### Phase 8 — Frontend Admin Dashboard
 - [x] Next.js routing structure set up (2025-05-13)
@@ -1356,6 +1356,7 @@ These are planned but not blocking launch:
 | 2026-05-13 | 1.0.4 | Replaced Resend with SendGrid (existing Centricity account). Marked Twilio and SendGrid as complete in Phase 0 checklist. |
 | 2026-05-13 | 1.0.5 | Phase 8 complete — full Next.js frontend built: login, dashboard, devices list+detail, test reports, violations, testers, surveys, fees, settings, and public tester portal. All pages compile cleanly. Map view, import wizard, and annual report page deferred. |
 | 2026-05-13 | 1.0.6 | Phase 8 fully complete — added ArcGIS map view, 4-step CSV import wizard (with client-side validation, preview, drag-and-drop), and annual report page (stats, compliance charts, CSV/PDF export). Annual report API route added to backend. All 17 frontend routes build clean. |
+| 2026-05-13 | 1.0.7 | Phase 7 core complete — notification engine built: 6 HTML email templates (test-due, test-overdue, test-submitted, test-failed, violation-notice, tester-approved), notifications.js service (SendGrid email + Twilio SMS with notifications_log writes), reminder-scheduler.js Bull worker (90/60/30/7-day due reminders with dedup), violations-worker.js Bull worker (overdue detection, violation record creation, noncompliance fee rows at 30/60/90-day tiers). Cron jobs wired into server.js (6am reminders, 7am violations). node-cron installed. Postal mail generator deferred to next session. |
 
 *Claude Code: update this table after every significant session with a one-line summary of what was built.*
 

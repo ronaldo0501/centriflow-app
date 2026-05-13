@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backflow Test Failed — Action Required</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f3f4f6;font-family:Arial,Helvetica,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f3f4f6;padding:32px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#2563eb;padding:32px 40px;">
+              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:-0.5px;">CentriFlow</h1>
+              <p style="margin:4px 0 0;color:#bfdbfe;font-size:13px;">Backflow Prevention &amp; Cross-Connection Control</p>
+            </td>
+          </tr>
+
+          <!-- Urgency Banner -->
+          <tr>
+            <td style="background-color:#fef2f2;border-bottom:3px solid #ef4444;padding:16px 40px;">
+              <p style="margin:0;color:#991b1b;font-size:14px;font-weight:700;">&#10060; FAILED TEST — Repair or replacement required by {{compliance_deadline}}</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px;">
+              <h2 style="margin:0 0 16px;color:#111827;font-size:20px;font-weight:600;">Backflow Test Failure Notice</h2>
+              <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Dear {{owner_name}},</p>
+              <p style="margin:0 0 24px;color:#374151;font-size:15px;line-height:1.6;">
+                Your backflow prevention assembly <strong>failed</strong> its required test on <strong>{{test_date}}</strong>.
+                Per regulations administered by {{org_name}}, you are required to have the assembly repaired or replaced
+                and retested by <strong style="color:#dc2626;">{{compliance_deadline}}</strong>.
+              </p>
+
+              <!-- Device Info Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fef2f2;border:1px solid #fecaca;border-radius:6px;margin-bottom:24px;">
+                <tr>
+                  <td style="padding:20px;">
+                    <h3 style="margin:0 0 12px;color:#991b1b;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Failed Assembly</h3>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;width:160px;">Tag Number:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;font-weight:600;">{{tag_number}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Address:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;">{{address}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Assembly Type:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;">{{assembly_type}} — {{size}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Test Date:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;">{{test_date}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Tested By:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;">{{tester_name}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Retest Deadline:</td>
+                        <td style="padding:4px 0;color:#dc2626;font-size:14px;font-weight:700;">{{compliance_deadline}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Required Steps -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;margin-bottom:24px;">
+                <tr>
+                  <td style="padding:20px;">
+                    <h3 style="margin:0 0 12px;color:#374151;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Required Steps</h3>
+                    <ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.8;">
+                      <li>Contact a certified backflow tester or plumber to inspect and repair or replace the assembly.</li>
+                      <li>Once repaired, schedule a retest with a certified tester.</li>
+                      <li>The tester must submit a passing retest report by <strong>{{compliance_deadline}}</strong>.</li>
+                    </ol>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0;color:#374151;font-size:15px;line-height:1.6;">
+                Failure to comply by the deadline may result in a formal violation notice, additional fees, and referral to {{org_name}} for enforcement action.
+                Contact {{org_name}} if you have questions.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#f9fafb;border-top:1px solid #e5e7eb;padding:24px 40px;">
+              <p style="margin:0 0 4px;color:#6b7280;font-size:12px;">This notice was sent by {{org_name}} via CentriFlow.</p>
+              <p style="margin:0;color:#9ca3af;font-size:11px;">Centricity GIS &bull; centriflow.centricitygis.com</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

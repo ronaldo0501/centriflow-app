@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backflow Test Overdue</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f3f4f6;font-family:Arial,Helvetica,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f3f4f6;padding:32px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#2563eb;padding:32px 40px;">
+              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:-0.5px;">CentriFlow</h1>
+              <p style="margin:4px 0 0;color:#bfdbfe;font-size:13px;">Backflow Prevention &amp; Cross-Connection Control</p>
+            </td>
+          </tr>
+
+          <!-- Urgency Banner -->
+          <tr>
+            <td style="background-color:#fef2f2;border-bottom:3px solid #ef4444;padding:16px 40px;">
+              <p style="margin:0;color:#991b1b;font-size:14px;font-weight:700;">&#9888;&#65039; ACTION REQUIRED — Your backflow test is {{days_overdue}} days overdue</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px;">
+              <h2 style="margin:0 0 16px;color:#111827;font-size:20px;font-weight:600;">Overdue Backflow Test Notice</h2>
+              <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Dear {{owner_name}},</p>
+              <p style="margin:0 0 24px;color:#374151;font-size:15px;line-height:1.6;">
+                Your backflow prevention assembly was due for testing on <strong>{{due_date}}</strong> and is now
+                <strong style="color:#dc2626;">{{days_overdue}} days overdue</strong>. Immediate action is required
+                to avoid additional compliance fees and enforcement actions.
+              </p>
+
+              <!-- Device Info Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fef2f2;border:1px solid #fecaca;border-radius:6px;margin-bottom:24px;">
+                <tr>
+                  <td style="padding:20px;">
+                    <h3 style="margin:0 0 12px;color:#991b1b;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Overdue Assembly</h3>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;width:140px;">Tag Number:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;font-weight:600;">{{tag_number}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Address:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;">{{address}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Assembly Type:</td>
+                        <td style="padding:4px 0;color:#111827;font-size:14px;">{{assembly_type}} — {{size}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#6b7280;font-size:14px;">Test Was Due:</td>
+                        <td style="padding:4px 0;color:#dc2626;font-size:14px;font-weight:700;">{{due_date}} ({{days_overdue}} days ago)</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 24px;color:#374151;font-size:15px;line-height:1.6;">
+                Please contact a certified tester immediately to schedule your backflow prevention test.
+                Continued non-compliance may result in formal violation notices, escalating fees, and water service interruption.
+              </p>
+
+              <p style="margin:0;color:#374151;font-size:15px;line-height:1.6;">
+                If you have questions or believe this notice was sent in error, please contact {{org_name}} directly.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#f9fafb;border-top:1px solid #e5e7eb;padding:24px 40px;">
+              <p style="margin:0 0 4px;color:#6b7280;font-size:12px;">This notice was sent by {{org_name}} via CentriFlow.</p>
+              <p style="margin:0;color:#9ca3af;font-size:11px;">Centricity GIS &bull; centriflow.centricitygis.com</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
