@@ -1159,58 +1159,58 @@ Track completed items here. Update after every session.
 - [x] Claude Code installed (2.1.131)
 
 ### Phase 2 — Project Scaffold
-- [ ] `/Desktop/centriflow-app` folder created
-- [ ] Git repo initialized and linked to GitHub
-- [ ] `/frontend` Next.js 14 app scaffolded
-- [ ] `/api` Express app created
-- [ ] All API npm dependencies installed
-- [ ] Folder structure created (`routes/`, `middleware/`, `services/`, etc.)
-- [ ] `.env` files created (not committed)
-- [ ] `CLAUDE.md` at project root
-- [ ] Initial commit pushed to GitHub
+- [x] `/Desktop/centriflow-app` folder created
+- [x] Git repo initialized and linked to GitHub
+- [x] `/frontend` Next.js 14 app scaffolded (Next.js 14.2, TypeScript, Tailwind, App Router)
+- [x] `/api` Express app created
+- [x] All API npm dependencies installed
+- [x] Folder structure created (`routes/`, `middleware/`, `services/`, etc.)
+- [x] `.env` files created (not committed)
+- [x] `CLAUDE.md` at project root
+- [x] Initial commit pushed to GitHub
 
 ### Phase 3 — Database Schema
-- [ ] `/api/src/db/migrations/` folder created
-- [ ] 001_organizations.sql
-- [ ] 002_properties.sql
-- [ ] 003_devices.sql
-- [ ] 004_users.sql
-- [ ] 005_certified_testers.sql
-- [ ] 006_test_reports.sql
-- [ ] 007_violations.sql
-- [ ] 008_fees.sql
-- [ ] 009_surveys.sql
-- [ ] 010_cw_sync_log.sql
-- [ ] 011_assembly_approved_models.sql
-- [ ] 012_notifications_log.sql
-- [ ] `run-migrations.js` created and tested
-- [ ] All migrations run successfully on `centriflow_dev`
-- [ ] `seed.js` created with test org and sample data
-- [ ] All PostGIS indexes created
+- [x] `/api/src/db/migrations/` folder created
+- [x] 001_organizations.sql
+- [x] 002_properties.sql
+- [x] 003_devices.sql
+- [x] 004_users.sql
+- [x] 005_certified_testers.sql
+- [x] 006_test_reports.sql
+- [x] 007_violations.sql
+- [x] 008_fees.sql
+- [x] 009_surveys.sql
+- [x] 010_cw_sync_log.sql
+- [x] 011_assembly_approved_models.sql
+- [x] 012_notifications_log.sql
+- [x] `run-migrations.js` created and tested
+- [x] All migrations run successfully on `centriflow_dev`
+- [x] `seed.js` created with test org and sample data
+- [x] All PostGIS indexes created
 
 ### Phase 4 — Authentication
-- [ ] JWT auth middleware (`/middleware/auth.js`)
-- [ ] Org resolver middleware (`/middleware/orgResolver.js`)
-- [ ] Standalone login route (`POST /auth/login`)
-- [ ] Org registration route (`POST /auth/register-org`)
-- [ ] Token refresh route (`POST /auth/refresh`)
-- [ ] Tester portal login (`POST /auth/tester-login`)
-- [ ] Cityworks auth service (`/services/cityworks-auth.js`)
-- [ ] CW test-connection endpoint
-- [ ] Auth tested locally with Postman/curl
+- [x] JWT auth middleware (`/middleware/auth.js`)
+- [x] Org resolver middleware (`/middleware/orgResolver.js`)
+- [x] Standalone login route (`POST /auth/login`)
+- [x] Org registration route (`POST /auth/register-org`)
+- [x] Token refresh route (`POST /auth/refresh`)
+- [x] Tester portal login (`POST /auth/tester-login`)
+- [x] Cityworks auth service (`/services/cityworks-auth.js`)
+- [ ] CW test-connection endpoint (Phase 6)
+- [x] Auth tested locally with Postman/curl
 
 ### Phase 5 — Core API Routes
-- [ ] Organizations routes (`/routes/organizations.js`)
-- [ ] Devices routes (`/routes/devices.js`) — full CRUD
-- [ ] Devices bulk import endpoint
-- [ ] Test reports routes (`/routes/test-reports.js`)
-- [ ] CW sync trigger on test FAIL
-- [ ] Violations routes (`/routes/violations.js`)
-- [ ] Testers routes (`/routes/testers.js`)
-- [ ] Fees routes (`/routes/fees.js`)
-- [ ] Stripe webhook handler
-- [ ] Surveys routes (`/routes/surveys.js`)
-- [ ] All routes tested with seed data
+- [x] Organizations routes (`/routes/organizations.js`)
+- [x] Devices routes (`/routes/devices.js`) — full CRUD
+- [x] Devices bulk import endpoint
+- [x] Test reports routes (`/routes/test-reports.js`)
+- [ ] CW sync trigger on test FAIL (Phase 6)
+- [x] Violations routes (`/routes/violations.js`)
+- [x] Testers routes (`/routes/testers.js`)
+- [x] Fees routes (`/routes/fees.js`)
+- [ ] Stripe webhook handler (Phase 5 billing sprint)
+- [x] Surveys routes (`/routes/surveys.js`)
+- [x] All routes tested with seed data
 
 ### Phase 6 — Cityworks Integration
 - [ ] CW integration service (`/services/cityworks.js`)
@@ -1239,21 +1239,21 @@ Track completed items here. Update after every session.
 - [ ] All workers registered and running locally
 
 ### Phase 8 — Frontend Admin Dashboard
-- [ ] Next.js routing structure set up
-- [ ] API client (`/lib/api.ts`) created
-- [ ] Auth pages (login, session management)
-- [ ] Dashboard home page
-- [ ] Device list page
-- [ ] Device detail page
-- [ ] Test reports page
-- [ ] Violations page
-- [ ] Testers page
+- [x] Next.js routing structure set up (2025-05-13)
+- [x] API client (`/lib/api.ts`) created (2025-05-13)
+- [x] Auth pages (login, session management) (2025-05-13)
+- [x] Dashboard home page (2025-05-13)
+- [x] Device list page (2025-05-13)
+- [x] Device detail page (2025-05-13)
+- [x] Test reports page (2025-05-13)
+- [x] Violations page (2025-05-13)
+- [x] Testers page (2025-05-13)
 - [ ] Map view (ArcGIS)
 - [ ] Import wizard (4-step)
-- [ ] Settings page
-- [ ] PUBLIC tester portal (`/portal`)
+- [x] Settings page (2025-05-13)
+- [x] PUBLIC tester portal (`/portal`) (2025-05-13)
 - [ ] Annual report generator page
-- [ ] Surveys page
+- [x] Surveys page (2025-05-13)
 
 ### Phase 9 — USC List + Assembly Validation
 - [ ] USC list downloader/importer (`/services/usc-list.js`)
@@ -1354,6 +1354,7 @@ These are planned but not blocking launch:
 | 2025-05-13 | 1.0.2 | Added full dual-mode org resolver middleware architecture [LOCKED]. Starts in Mode 1 (single URL, org from JWT/header). Flips to Mode 2 (client subdomains) via ORG_SUBDOMAIN_MODE env var — zero code changes. Full orgResolver.js implementation included with in-memory cache, registration order, and frontend header pattern. Added ORG_SUBDOMAIN_MODE + BASE_DOMAIN to env vars. |
 | 2026-05-13 | 1.0.3 | Added required CLAUDE.md prefix and DEVELOPMENT COMMANDS section with local dev, database bootstrap, and environment file setup instructions. |
 | 2026-05-13 | 1.0.4 | Replaced Resend with SendGrid (existing Centricity account). Marked Twilio and SendGrid as complete in Phase 0 checklist. |
+| 2026-05-13 | 1.0.5 | Phase 8 complete — full Next.js frontend built: login, dashboard, devices list+detail, test reports, violations, testers, surveys, fees, settings, and public tester portal. All pages compile cleanly. Map view, import wizard, and annual report page deferred. |
 
 *Claude Code: update this table after every significant session with a one-line summary of what was built.*
 
