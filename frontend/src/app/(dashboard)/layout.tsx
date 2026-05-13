@@ -6,7 +6,7 @@ import { clearAuthData, isAuthenticated } from '@/lib/api';
 import { cn } from '@/lib/utils';
 import {
   Droplets, LayoutDashboard, Gauge, ClipboardList, AlertTriangle,
-  Users, MapPin, DollarSign, Settings, LogOut, Menu,
+  Users, MapPin, DollarSign, Settings, LogOut, Menu, Upload, FileText, Map,
 } from 'lucide-react';
 
 const NAV = [
@@ -17,6 +17,9 @@ const NAV = [
   { href: '/testers', label: 'Testers', icon: Users },
   { href: '/surveys', label: 'Surveys', icon: MapPin },
   { href: '/fees', label: 'Fees', icon: DollarSign },
+  { href: '/map', label: 'Map', icon: Map },
+  { href: '/import', label: 'Import', icon: Upload },
+  { href: '/reports', label: 'Annual Report', icon: FileText },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
 

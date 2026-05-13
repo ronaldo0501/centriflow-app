@@ -1248,11 +1248,11 @@ Track completed items here. Update after every session.
 - [x] Test reports page (2025-05-13)
 - [x] Violations page (2025-05-13)
 - [x] Testers page (2025-05-13)
-- [ ] Map view (ArcGIS)
-- [ ] Import wizard (4-step)
+- [x] Map view (ArcGIS) (2026-05-13)
+- [x] Import wizard (4-step) (2026-05-13)
 - [x] Settings page (2025-05-13)
 - [x] PUBLIC tester portal (`/portal`) (2025-05-13)
-- [ ] Annual report generator page
+- [x] Annual report generator page (2026-05-13)
 - [x] Surveys page (2025-05-13)
 
 ### Phase 9 — USC List + Assembly Validation
@@ -1355,6 +1355,7 @@ These are planned but not blocking launch:
 | 2026-05-13 | 1.0.3 | Added required CLAUDE.md prefix and DEVELOPMENT COMMANDS section with local dev, database bootstrap, and environment file setup instructions. |
 | 2026-05-13 | 1.0.4 | Replaced Resend with SendGrid (existing Centricity account). Marked Twilio and SendGrid as complete in Phase 0 checklist. |
 | 2026-05-13 | 1.0.5 | Phase 8 complete — full Next.js frontend built: login, dashboard, devices list+detail, test reports, violations, testers, surveys, fees, settings, and public tester portal. All pages compile cleanly. Map view, import wizard, and annual report page deferred. |
+| 2026-05-13 | 1.0.6 | Phase 8 fully complete — added ArcGIS map view, 4-step CSV import wizard (with client-side validation, preview, drag-and-drop), and annual report page (stats, compliance charts, CSV/PDF export). Annual report API route added to backend. All 17 frontend routes build clean. |
 
 *Claude Code: update this table after every significant session with a one-line summary of what was built.*
 

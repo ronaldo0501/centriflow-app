@@ -14,6 +14,7 @@ const violationRoutes = require('./routes/violations');
 const testerRoutes = require('./routes/testers');
 const feeRoutes = require('./routes/fees');
 const surveyRoutes = require('./routes/surveys');
+const annualReportRoutes = require('./routes/reports');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use('/api/v1/violations', violationRoutes);
 app.use('/api/v1/testers', testerRoutes);
 app.use('/api/v1/fees', feeRoutes);
 app.use('/api/v1/surveys', surveyRoutes);
+app.use('/api/v1/annual-report', annualReportRoutes);
 
 // 404
 app.use((req, res) => {
