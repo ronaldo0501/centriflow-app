@@ -21,7 +21,20 @@ const app = express();
 
 // Security + logging
 app.use(helmet());
-app.use(cors({ origin: process.env.NEXT_PUBLIC_APP_URL || '*', credentials: true }));
+const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  process.env.APP_URL,
+].filter(Boolean);
+app.use(cors({
+  origin: (origin, cb) => {
+    // Allow requests with no origin (curl, mobile apps, server-to-server)
+    if (!origin) return cb(null, true);
+    if (ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+    cb(new Error(`CORS: origin ${origin} not allowed`));
+  },
+  credentials: true,
+}));
 app.use(morgan('dev'));
 
 // Raw body for Stripe webhooks — must come before express.json()
