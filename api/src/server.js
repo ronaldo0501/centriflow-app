@@ -20,6 +20,7 @@ const startWorkers = () => {
   let cron;
   let scheduleReminders;
   let checkForViolations;
+  let triggerRefresh;
 
   try {
     cron = require('node-cron');
@@ -38,6 +39,12 @@ const startWorkers = () => {
     ({ checkForViolations } = require('./workers/violations-worker'));
   } catch (err) {
     console.error('[server] Failed to load violations-worker:', err.message);
+  }
+
+  try {
+    ({ triggerRefresh } = require('./workers/usc-refresh-worker'));
+  } catch (err) {
+    console.error('[server] Failed to load usc-refresh-worker:', err.message);
   }
 
   // ── Daily reminder scan — 6:00 AM ────────────────────────────────────────
@@ -74,7 +81,24 @@ const startWorkers = () => {
     });
   }
 
-  console.log('[server] Cron workers scheduled (reminders: 6am, violations: 7am)');
+  // ── Monthly USC list refresh — 1st of every month at midnight ────────────
+  if (triggerRefresh) {
+    cron.schedule('0 0 1 * *', async () => {
+      console.log('[cron] Running USC list refresh');
+      try {
+        await triggerRefresh();
+      } catch (err) {
+        console.error('[cron] triggerRefresh error:', err.message);
+      }
+    });
+
+    // Run once at startup to ensure dev/demo has sample data
+    triggerRefresh().catch((err) => {
+      console.error('[startup] triggerRefresh error:', err.message);
+    });
+  }
+
+  console.log('[server] Cron workers scheduled (reminders: 6am, violations: 7am, usc-refresh: 1st of month)');
 };
 
 // ---------------------------------------------------------------------------

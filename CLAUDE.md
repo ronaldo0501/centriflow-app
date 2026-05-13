@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ---
 
 # CentriFlow — Claude Code Master Specification
-**Version:** 1.0.7
+**Version:** 1.0.8
 **Last Updated:** 2026-05-13
 **Owner:** Brandon Wright, Centricity GIS
 **Product:** CentriFlow — Backflow Prevention & Cross-Connection Control SaaS
@@ -1256,12 +1256,12 @@ Track completed items here. Update after every session.
 - [x] Surveys page (2025-05-13)
 
 ### Phase 9 — USC List + Assembly Validation
-- [ ] USC list downloader/importer (`/services/usc-list.js`)
-- [ ] Monthly refresh worker (`/workers/usc-refresh-worker.js`)
-- [ ] `validateAssembly()` function
-- [ ] Assembly validation on device create/edit
-- [ ] USC validation shown in import wizard
-- [ ] Manual refresh endpoint
+- [x] USC list downloader/importer (`/services/usc-list.js`) (2026-05-13)
+- [x] Monthly refresh worker (`/workers/usc-refresh-worker.js`) (2026-05-13)
+- [x] `validateAssembly()` function (2026-05-13)
+- [x] Assembly validation on device create/edit (2026-05-13)
+- [x] USC validation shown in import wizard (2026-05-13)
+- [x] Manual refresh endpoint (2026-05-13)
 
 ### Phase 10 — Azure Deployment
 - [ ] All Azure resources created (see Deployment section above)
@@ -1357,6 +1357,7 @@ These are planned but not blocking launch:
 | 2026-05-13 | 1.0.5 | Phase 8 complete — full Next.js frontend built: login, dashboard, devices list+detail, test reports, violations, testers, surveys, fees, settings, and public tester portal. All pages compile cleanly. Map view, import wizard, and annual report page deferred. |
 | 2026-05-13 | 1.0.6 | Phase 8 fully complete — added ArcGIS map view, 4-step CSV import wizard (with client-side validation, preview, drag-and-drop), and annual report page (stats, compliance charts, CSV/PDF export). Annual report API route added to backend. All 17 frontend routes build clean. |
 | 2026-05-13 | 1.0.7 | Phase 7 core complete — notification engine built: 6 HTML email templates (test-due, test-overdue, test-submitted, test-failed, violation-notice, tester-approved), notifications.js service (SendGrid email + Twilio SMS with notifications_log writes), reminder-scheduler.js Bull worker (90/60/30/7-day due reminders with dedup), violations-worker.js Bull worker (overdue detection, violation record creation, noncompliance fee rows at 30/60/90-day tiers). Cron jobs wired into server.js (6am reminders, 7am violations). node-cron installed. Postal mail generator deferred to next session. |
+| 2026-05-13 | 1.0.8 | Phase 9 complete — USC FCCCHR assembly validation built: usc-list.js service (importFromCSV with manual CSV parser, validateAssembly with fuzzy manufacturer match + size normalization, updateDeviceValidationStatus, seedSampleData with 20 common assemblies), usc-refresh-worker.js Bull queue (monthly cron + startup seed), admin.js routes (POST /usc/refresh, GET /usc/status, POST /usc/import), devices.js wired to fire validation asynchronously on create/update/import, import wizard updated with USC? column and post-import background validation notice. |
 
 *Claude Code: update this table after every significant session with a one-line summary of what was built.*
 

@@ -271,6 +271,7 @@ export default function ImportPage() {
                     {['tag_number', 'address_line1', 'city', 'state', 'assembly_type', 'size', 'hazard_classification', 'owner_name'].map(h => (
                       <th key={h} className="text-left px-3 py-2 font-medium text-gray-500">{h}</th>
                     ))}
+                    <th className="text-left px-3 py-2 font-medium text-gray-500" title="USC validation runs server-side after import">USC?</th>
                     <th className="text-left px-3 py-2 font-medium text-gray-500">status</th>
                   </tr>
                 </thead>
@@ -282,6 +283,7 @@ export default function ImportPage() {
                         {['tag_number', 'address_line1', 'city', 'state', 'assembly_type', 'size', 'hazard_classification', 'owner_name'].map(h => (
                           <td key={h} className="px-3 py-2 text-gray-700">{row[h] || '—'}</td>
                         ))}
+                        <td className="px-3 py-2 text-gray-400">—</td>
                         <td className="px-3 py-2">
                           {v.errors.length > 0 ? <span className="text-red-600 font-medium">Error</span> :
                            v.warnings.length > 0 ? <span className="text-amber-600">Warning</span> :
@@ -292,6 +294,9 @@ export default function ImportPage() {
                   })}
                 </tbody>
               </table>
+            </div>
+            <div className="px-4 py-2 border-t border-gray-100 text-xs text-gray-400">
+              USC? column shows &ldquo;—&rdquo; here — assembly validation runs server-side after import completes.
             </div>
           </div>
 
@@ -380,6 +385,9 @@ export default function ImportPage() {
               {importResult.errors.map((e, i) => <div key={i}>{e}</div>)}
             </div>
           )}
+          <div className="text-left bg-blue-50 border border-blue-100 rounded-lg p-3 mb-6 text-sm text-blue-700">
+            USC assembly validation is running in the background. Refresh devices to see validation status.
+          </div>
           <a href="/devices" className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">
             View Devices
           </a>

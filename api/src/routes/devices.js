@@ -1,5 +1,6 @@
 const express = require('express');
 const { query } = require('../db');
+const { updateDeviceValidationStatus } = require('../services/usc-list');
 
 const router = express.Router();
 
@@ -150,6 +151,10 @@ router.post('/', async (req, res) => {
        model_number, serial_number, hazard_classification, service_type, location_notes,
        install_date, test_frequency_months || 12]
     );
+
+    // Kick off USC validation asynchronously — don't block the response
+    setImmediate(() => updateDeviceValidationStatus(rows[0].id));
+
     res.status(201).json({ success: true, data: rows[0] });
   } catch (err) {
     if (err.code === '23505') return res.status(409).json({ success: false, error: 'Tag number already exists for this org', code: 'DUPLICATE_TAG' });
@@ -194,6 +199,14 @@ router.put('/:id', async (req, res) => {
        hazard_classification, service_type, location_notes, install_date,
        test_frequency_months, status, req.params.id, req.org.id]
     );
+
+    // Re-validate USC status if any assembly-identifying fields changed
+    const assemblyFieldsChanged = assembly_type !== undefined || size !== undefined
+      || manufacturer !== undefined || model_number !== undefined;
+    if (assemblyFieldsChanged) {
+      setImmediate(() => updateDeviceValidationStatus(req.params.id));
+    }
+
     res.json({ success: true, data: rows[0] });
   } catch (err) {
     console.error(err);
@@ -247,18 +260,25 @@ router.post('/import', async (req, res) => {
         }
         if (!propertyId) { results.errors.push({ tag: d.tag_number, error: 'Could not resolve property' }); continue; }
 
-        await query(
+        const insertResult = await query(
           `INSERT INTO devices (org_id, property_id, tag_number, assembly_type, size, manufacturer,
              model_number, serial_number, hazard_classification, service_type, last_test_date,
              last_test_result, next_test_due, pending_test_event)
            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
-           ON CONFLICT (org_id, tag_number) DO NOTHING`,
+           ON CONFLICT (org_id, tag_number) DO NOTHING
+           RETURNING id`,
           [req.org.id, propertyId, d.tag_number, d.assembly_type, d.size, d.manufacturer,
            d.model_number, d.serial_number, d.hazard_classification || 'low', d.service_type,
            d.last_test_date, d.last_test_result || 'not_tested', d.next_test_due,
            d.last_test_date ? null : 'initial']
         );
         results.created++;
+
+        // Kick off USC validation asynchronously for each imported device
+        if (insertResult.rows[0]?.id) {
+          const importedDeviceId = insertResult.rows[0].id;
+          setImmediate(() => updateDeviceValidationStatus(importedDeviceId));
+        }
       } catch (e) {
         results.errors.push({ tag: d.tag_number, error: e.message });
       }
