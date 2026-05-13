@@ -1,0 +1,42 @@
+{
+  "name": "centriflow-api",
+  "version": "1.0.0",
+  "description": "CentriFlow backflow prevention SaaS — API server",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "migrate": "node src/db/run-migrations.js",
+    "seed": "node src/db/seed.js"
+  },
+  "keywords": [],
+  "author": "Centricity GIS",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "@azure/storage-blob": "^12.31.0",
+    "@sendgrid/mail": "^8.1.6",
+    "@sparticuz/chromium": "^148.0.0",
+    "axios": "^1.16.1",
+    "bcryptjs": "^3.0.3",
+    "bull": "^4.16.5",
+    "cors": "^2.8.6",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.10.1",
+    "joi": "^18.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "puppeteer-core": "^24.43.1",
+    "stripe": "^22.1.1",
+    "twilio": "^6.0.2",
+    "uuid": "^14.0.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
