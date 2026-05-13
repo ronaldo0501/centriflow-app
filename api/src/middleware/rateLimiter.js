@@ -1,7 +1,7 @@
 const rateLimit = {};
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 100;
-const AUTH_MAX = 10;
+const AUTH_MAX = process.env.NODE_ENV === 'development' ? 1000 : 10;
 
 const limiter = (max) => (req, res, next) => {
   const key = `${req.ip}:${req.path}`;
